@@ -13,13 +13,19 @@ npm run build    # production build → dist/
 npm run preview  # preview the dist build
 ```
 
-## Deploy on Render (Static Site)
+## Deploy on Render (Web Service)
 
-1. Create a **Static Site** (not a Web Service)
-2. **Build Command:** `npm install && npm run build`
-3. **Publish Directory:** `dist`
-4. Deploy — the site is just HTML/CSS/JS files; it loads instantly
+Use these exact settings:
 
-Or connect the repo and use `render.yaml`.
+| Field | Value |
+|--------|--------|
+| Service type | **Web Service** |
+| Runtime | **Node** |
+| Build Command | `npm install && npm run build` |
+| Start Command | `npm start` |
 
-No environment variables are required.
+Do **not** put `dist` in Start Command — that fails with `dist: command not found`.
+
+`npm start` runs `serve -s dist`, which hosts the built site and supports page refresh (SPA).
+
+No backend API is required. The site still opens immediately after deploy.
