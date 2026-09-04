@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@theme {
+  --color-rose: #c4786a;
+  --color-rose-dark: #a85f52;
+  --color-rose-soft: #e8c4bc;
+  --color-cream: #f7f1e8;
+  --color-cream-dark: #efe6d8;
+  --color-ivory: #fbf7f2;
+  --color-sage: #a8b89a;
+  --color-sage-dark: #8fa07f;
+  --color-cocoa: #4a3428;
+  --color-cocoa-soft: #6b4f3f;
+  --color-gold: #c4a574;
+  --color-gold-soft: #d9c4a0;
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Caveat", cursive;
+
+  --shadow-soft: 0 8px 30px rgba(74, 52, 40, 0.08);
+  --shadow-lift: 0 16px 40px rgba(74, 52, 40, 0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+@media (min-width: 640px) {
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+body {
+  margin: 0;
+  min-width: 0;
+  font-family: var(--font-sans);
+  color: var(--color-cocoa);
+  background-color: var(--color-ivory);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+::selection {
+  background-color: var(--color-rose-soft);
+  color: var(--color-cocoa);
+}
+
+/* Hide scrollbar for category tabs */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scroll reveal — reduced motion safe */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Decorative flourishes — hide on very narrow screens to avoid overflow */
+.flourish::before,
+.flourish::after {
+  content: "✦";
+  color: var(--color-gold);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  margin: 0 0.5rem;
+  opacity: 0.7;
+}
+
+@media (max-width: 359px) {
+  .flourish::before,
+  .flourish::after {
+    display: none;
+  }
+}
