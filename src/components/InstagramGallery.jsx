@@ -1,6 +1,6 @@
 import Instagram from './InstagramIcon'
 import { brand, instagramGallery } from '../data/content'
-import { useReveal, scrollToId } from '../hooks/useReveal'
+import { useReveal } from '../hooks/useReveal'
 import SectionHeading from './SectionHeading'
 import Button from './Button'
 
@@ -8,11 +8,7 @@ export default function InstagramGallery() {
   const ref = useReveal()
 
   return (
-    <section
-      id="instagram"
-      className="section-pad scroll-mt-24 bg-cream-dark/40"
-      aria-labelledby="instagram-heading"
-    >
+    <section className="section-pad bg-cream-dark/40" aria-labelledby="instagram-heading">
       <div ref={ref} className="reveal mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Instagram"
@@ -57,11 +53,7 @@ export default function InstagramGallery() {
             <Instagram size={16} aria-hidden="true" />
             Follow {brand.instagramHandle}
           </Button>
-          <Button
-            variant="secondary"
-            className="w-full sm:w-auto"
-            onClick={() => scrollToId('order')}
-          >
+          <Button to="/order" variant="secondary" className="w-full sm:w-auto">
             Order From The Site
           </Button>
         </div>
