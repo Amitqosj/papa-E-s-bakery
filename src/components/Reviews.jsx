@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import { reviews } from '../data/content'
 import { useReveal } from '../hooks/useReveal'
@@ -7,6 +7,7 @@ import SectionHeading from './SectionHeading'
 export default function Reviews() {
   const ref = useReveal()
   const [index, setIndex] = useState(0)
+  const touchStartX = useRef(null)
 
   const next = useCallback(() => {
     setIndex((i) => (i + 1) % reviews.length)
@@ -17,38 +18,57 @@ export default function Reviews() {
   }, [])
 
   useEffect(() => {
-    const timer = setInterval(next, 6000)
+    const timer = setInterval(next, 7000)
     return () => clearInterval(timer)
   }, [next])
 
   const review = reviews[index]
 
+  const onTouchStart = (e) => {
+    touchStartX.current = e.changedTouches[0].clientX
+  }
+
+  const onTouchEnd = (e) => {
+    if (touchStartX.current == null) return
+    const delta = e.changedTouches[0].clientX - touchStartX.current
+    if (Math.abs(delta) > 50) {
+      if (delta < 0) next()
+      else prev()
+    }
+    touchStartX.current = null
+  }
+
   return (
     <section
       id="reviews"
-      className="bg-ivory px-4 py-16 min-[375px]:px-5 sm:px-8 sm:py-24 lg:py-28"
+      className="section-pad scroll-mt-24 bg-ivory"
       aria-labelledby="reviews-heading"
     >
-      <div ref={ref} className="reveal mx-auto max-w-4xl">
+      <div ref={ref} className="reveal mx-auto max-w-3xl">
         <SectionHeading
           eyebrow="Testimonials"
           title={<span id="reviews-heading">Sweet Words From Our Customers</span>}
-          subtitle="DEMO reviews for pitch presentation — replace with real customer feedback."
+          subtitle="Demo reviews for pitch — replace with real customer feedback anytime."
           className="mb-12 sm:mb-16"
         />
 
         <div
-          className="relative rounded-[1.25rem] border border-cocoa/8 bg-white/70 px-4 py-10 text-center shadow-soft min-[400px]:px-6 sm:rounded-[2rem] sm:px-12 sm:py-16"
+          className="relative rounded-2xl border border-cocoa/8 bg-white/75 px-5 py-12 text-center shadow-soft sm:rounded-3xl sm:px-12 sm:py-16"
           aria-live="polite"
           aria-atomic="true"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
         >
-          <div className="mb-6 flex justify-center gap-1" aria-label={`${review.rating} out of 5 stars`}>
+          <div
+            className="mb-6 flex justify-center gap-1"
+            aria-label={`${review.rating} out of 5 stars`}
+          >
             {Array.from({ length: review.rating }).map((_, i) => (
               <Star key={i} size={16} className="fill-gold text-gold" aria-hidden="true" />
             ))}
           </div>
 
-          <blockquote className="font-display text-xl leading-snug text-cocoa min-[375px]:text-2xl sm:text-3xl md:text-[2.15rem]">
+          <blockquote className="font-display text-xl leading-snug text-cocoa min-[375px]:text-2xl sm:text-3xl">
             &ldquo;{review.text}&rdquo;
           </blockquote>
 

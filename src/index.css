@@ -40,14 +40,10 @@ body,
   overflow-x: hidden;
 }
 
-section[id] {
-  scroll-margin-top: 5rem;
-}
-
-@media (min-width: 640px) {
-  section[id] {
-    scroll-margin-top: 5.5rem;
-  }
+/* Sticky navbar offset for all anchored sections */
+section[id],
+#order {
+  scroll-margin-top: 5.5rem;
 }
 
 body {
@@ -55,7 +51,7 @@ body {
   min-width: 0;
   font-family: var(--font-sans);
   color: var(--color-cocoa);
-  background-color: var(--color-ivory);
+  background-color: var(--color-cream);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -72,7 +68,6 @@ video {
   color: var(--color-cocoa);
 }
 
-/* Hide scrollbar for category tabs */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -81,13 +76,12 @@ video {
   display: none;
 }
 
-/* Scroll reveal — reduced motion safe */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(24px);
   transition:
-    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal.is-visible {
   opacity: 1;
@@ -105,20 +99,32 @@ video {
   }
 }
 
-/* Decorative flourishes — hide on very narrow screens to avoid overflow */
-.flourish::before,
-.flourish::after {
-  content: "✦";
-  color: var(--color-gold);
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  margin: 0 0.5rem;
-  opacity: 0.7;
+.section-pad {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
 }
 
-@media (max-width: 359px) {
-  .flourish::before,
-  .flourish::after {
-    display: none;
+@media (min-width: 375px) {
+  .section-pad {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .section-pad {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-pad {
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
   }
 }

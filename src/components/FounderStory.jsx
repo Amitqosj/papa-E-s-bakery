@@ -9,35 +9,34 @@ export default function FounderStory() {
 
   return (
     <section
-      id="story"
-      className="bg-ivory px-4 py-16 min-[375px]:px-5 sm:px-8 sm:py-24 lg:py-28"
+      id="our-story"
+      className="section-pad scroll-mt-24 bg-ivory"
       aria-labelledby="story-heading"
     >
       <div
         ref={ref}
-        className="reveal mx-auto grid max-w-7xl items-center gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-20"
+        className="reveal mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-20"
       >
-        <div className="order-2 lg:order-1">
-          <p className="mb-4 text-[0.7rem] font-medium uppercase tracking-[0.22em] text-rose">
+        <div className="order-2 min-w-0 lg:order-1">
+          <p className="mb-3 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-rose">
             Our Story
           </p>
           <h2
             id="story-heading"
-            className="font-display text-[2rem] leading-[1.12] text-cocoa min-[375px]:text-4xl sm:text-5xl"
+            className="font-display text-[2.15rem] leading-[1.1] text-cocoa min-[375px]:text-4xl sm:text-5xl"
           >
             More Than A Bakery.
           </h2>
 
-          <div className="mt-6 space-y-4 text-base leading-relaxed text-cocoa-soft sm:text-lg">
+          <div className="mt-6 space-y-4 text-sm leading-relaxed text-cocoa-soft sm:text-base md:text-lg">
             <p>
-              Papa E&apos;s Bakery is a young, creative bakery brand based in Atlanta — built
-              around a passion for baking, thoughtful design, and making beautiful desserts for
-              people and their special moments.
+              Papa E&apos;s Bakery is a creative Atlanta bakery built on passion for baking,
+              thoughtful design, and desserts made for real celebrations.
             </p>
             <p>
-              Led by a young baker with a genuine love for the craft, the brand grew from
-              Instagram into a custom bakery known for creativity, care, and treats that feel
-              personal.
+              Led by a young baker with an entrepreneurial spirit, the brand grew from Instagram
+              into a custom bakery known for craft, creativity, and treats that feel personal —
+              proof that ambition and heart can build something beautiful.
             </p>
           </div>
 
@@ -57,17 +56,17 @@ export default function FounderStory() {
         </div>
 
         <div className="order-1 lg:order-2">
-          <div className="relative overflow-hidden rounded-[2rem] shadow-lift">
+          <div className="relative overflow-hidden rounded-2xl shadow-lift sm:rounded-3xl">
             <div className="aspect-[4/5]">
               <img
                 src={STORY_IMAGE}
-                alt="DEMO: Behind-the-scenes baking moment — replace with founder photography"
+                alt="Behind-the-scenes baking at Papa E's Bakery"
                 className="h-full w-full object-cover"
                 loading="lazy"
               />
             </div>
           </div>
-          <p className="mt-4 text-center font-script text-2xl text-rose/70">Atlanta · handmade</p>
+          <p className="mt-4 text-center font-script text-2xl text-rose/65">Atlanta · handmade</p>
         </div>
       </div>
     </section>

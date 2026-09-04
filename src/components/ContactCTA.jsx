@@ -10,32 +10,32 @@ export default function ContactCTA() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-cocoa px-4 py-16 min-[375px]:px-5 sm:px-8 sm:py-24 lg:py-28"
+      className="relative scroll-mt-24 overflow-hidden bg-cocoa section-pad"
       aria-labelledby="contact-heading"
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-40"
+        className="pointer-events-none absolute inset-0 opacity-50"
         style={{
           background:
-            'radial-gradient(ellipse 60% 50% at 80% 20%, rgba(196,120,106,0.35), transparent), radial-gradient(ellipse 40% 40% at 10% 80%, rgba(168,184,154,0.25), transparent)',
+            'radial-gradient(ellipse 55% 50% at 85% 15%, rgba(196,120,106,0.4), transparent), radial-gradient(ellipse 40% 40% at 10% 85%, rgba(168,184,154,0.22), transparent)',
         }}
       />
 
       <div ref={ref} className="reveal relative mx-auto max-w-3xl text-center">
-        <p className="mb-4 text-[0.7rem] font-medium uppercase tracking-[0.22em] text-gold-soft">
+        <p className="mb-4 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-gold-soft">
           Get In Touch
         </p>
         <h2
           id="contact-heading"
-          className="font-display text-[2rem] leading-[1.12] text-cream min-[375px]:text-4xl sm:text-5xl md:text-[3.5rem]"
+          className="font-display text-[2.15rem] leading-[1.1] text-cream min-[375px]:text-4xl sm:text-5xl lg:text-[3.4rem]"
         >
           Let&apos;s Make Something Sweet.
         </h2>
-        <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-cream/75 sm:mt-5 sm:text-base md:text-lg">
-          Planning a birthday, celebration or simply craving something special?
+        <p className="mx-auto mt-5 max-w-lg text-sm leading-relaxed text-cream/75 sm:text-base md:text-lg">
+          Planning something special? Let&apos;s create a dessert worth remembering.
         </p>
 
-        <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center">
+        <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
           <Button onClick={() => scrollToId('order')} className="w-full sm:w-auto">
             Order Now
           </Button>
@@ -45,15 +45,7 @@ export default function ContactCTA() {
             className="w-full !bg-cream/10 !text-cream hover:!bg-cream/20 sm:w-auto"
           >
             <Mail size={15} aria-hidden="true" />
-            Email Papa E&apos;s
-          </Button>
-          <Button
-            variant="ghost"
-            href={brand.instagramUrl}
-            className="w-full !bg-cream/10 !text-cream hover:!bg-cream/20 sm:w-auto"
-          >
-            <Instagram size={15} aria-hidden="true" />
-            Instagram
+            Contact Papa E&apos;s
           </Button>
         </div>
 
@@ -72,8 +64,9 @@ export default function ContactCTA() {
               href={brand.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-cream"
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-cream"
             >
+              <Instagram size={14} />
               {brand.instagramHandle}
             </a>
           </li>

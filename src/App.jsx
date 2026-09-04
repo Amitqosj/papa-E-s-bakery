@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import TrustBar from './components/TrustBar'
@@ -14,12 +15,22 @@ import ContactCTA from './components/ContactCTA'
 import Footer from './components/Footer'
 import MobileOrderBar from './components/MobileOrderBar'
 import BackToTop from './components/BackToTop'
+import { scrollToId } from './hooks/useReveal'
 
 /**
- * Papa E's Bakery — Static frontend only.
- * No backend / API required. Renders immediately on load (including on Render).
+ * Papa E's Bakery — Static SPA frontend.
+ * Single-page scrolling experience. No backend required.
  */
 export default function App() {
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '')
+    if (hash) {
+      const t = window.setTimeout(() => scrollToId(hash), 50)
+      return () => window.clearTimeout(t)
+    }
+    return undefined
+  }, [])
+
   return (
     <>
       <a
