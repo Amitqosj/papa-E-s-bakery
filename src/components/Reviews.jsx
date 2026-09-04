@@ -39,11 +39,7 @@ export default function Reviews() {
   }
 
   return (
-    <section
-      id="reviews"
-      className="section-pad scroll-mt-24 bg-ivory"
-      aria-labelledby="reviews-heading"
-    >
+    <section className="section-pad bg-ivory" aria-labelledby="reviews-heading">
       <div ref={ref} className="reveal mx-auto max-w-3xl">
         <SectionHeading
           eyebrow="Testimonials"

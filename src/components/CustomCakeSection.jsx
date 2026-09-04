@@ -1,5 +1,5 @@
 import { Check } from 'lucide-react'
-import { useReveal, scrollToId } from '../hooks/useReveal'
+import { useReveal } from '../hooks/useReveal'
 import Button from './Button'
 
 const features = [
@@ -16,11 +16,7 @@ export default function CustomCakeSection() {
   const ref = useReveal()
 
   return (
-    <section
-      id="custom-cakes"
-      className="section-pad scroll-mt-24 bg-ivory"
-      aria-labelledby="custom-heading"
-    >
+    <section className="section-pad bg-ivory" aria-labelledby="custom-heading">
       <div
         ref={ref}
         className="reveal mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-16"
@@ -65,7 +61,7 @@ export default function CustomCakeSection() {
           </ul>
 
           <div className="mt-10">
-            <Button className="w-full sm:w-auto" onClick={() => scrollToId('order')}>
+            <Button to="/order" className="w-full sm:w-auto">
               Start a Custom Order
             </Button>
           </div>

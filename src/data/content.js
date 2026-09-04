@@ -193,10 +193,10 @@ export const trustItems = [
 ]
 
 export const navLinks = [
-  { href: '#home', id: 'home', label: 'Home' },
-  { href: '#menu', id: 'menu', label: 'Menu' },
-  { href: '#custom-cakes', id: 'custom-cakes', label: 'Custom Cakes' },
-  { href: '#our-story', id: 'our-story', label: 'Our Story' },
-  { href: '#reviews', id: 'reviews', label: 'Reviews' },
-  { href: '#contact', id: 'contact', label: 'Contact' },
+  { path: '/', id: 'home', label: 'Home' },
+  { path: '/menu', id: 'menu', label: 'Menu' },
+  { path: '/custom-cakes', id: 'custom-cakes', label: 'Custom Cakes' },
+  { path: '/our-story', id: 'our-story', label: 'Our Story' },
+  { path: '/reviews', id: 'reviews', label: 'Reviews' },
+  { path: '/contact', id: 'contact', label: 'Contact' },
 ]

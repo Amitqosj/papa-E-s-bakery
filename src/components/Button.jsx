@@ -1,7 +1,10 @@
+import { Link } from 'react-router-dom'
+
 export default function Button({
   children,
   variant = 'primary',
   href,
+  to,
   onClick,
   type = 'button',
   className = '',
@@ -21,6 +24,14 @@ export default function Button({
   }
 
   const classes = `${base} ${variants[variant]} ${fullWidth ? 'w-full' : ''} ${className}`
+
+  if (to) {
+    return (
+      <Link to={to} className={classes} aria-label={ariaLabel} onClick={onClick}>
+        {children}
+      </Link>
+    )
+  }
 
   if (href) {
     const external = href.startsWith('http') || href.startsWith('mailto:')

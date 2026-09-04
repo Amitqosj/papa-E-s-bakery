@@ -1,5 +1,4 @@
 import { brand } from '../data/content'
-import { scrollToId } from '../hooks/useReveal'
 import Button from './Button'
 
 const HERO_IMAGE =
@@ -7,7 +6,7 @@ const HERO_IMAGE =
 
 export default function Hero() {
   return (
-    <section id="home" className="relative scroll-mt-24 overflow-hidden bg-cream" aria-label="Hero">
+    <section className="relative overflow-hidden bg-cream" aria-label="Hero">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -33,14 +32,10 @@ export default function Hero() {
           </p>
 
           <div className="mt-8 flex w-full flex-col gap-3 min-[420px]:flex-row min-[420px]:flex-wrap">
-            <Button className="w-full !rounded-xl min-[420px]:w-auto" onClick={() => scrollToId('order')}>
+            <Button to="/order" className="w-full !rounded-xl min-[420px]:w-auto">
               Order Something Sweet
             </Button>
-            <Button
-              variant="secondary"
-              className="w-full !rounded-xl min-[420px]:w-auto"
-              onClick={() => scrollToId('menu')}
-            >
+            <Button to="/menu" variant="secondary" className="w-full !rounded-xl min-[420px]:w-auto">
               Explore the Menu
             </Button>
           </div>

@@ -1,16 +1,18 @@
 import { useState } from 'react'
 import { CATEGORIES, getProductsByCategory } from '../data/products'
-import { useReveal, scrollToId } from '../hooks/useReveal'
+import { useNavigate } from 'react-router-dom'
+import { useReveal } from '../hooks/useReveal'
 import SectionHeading from './SectionHeading'
 import ProductCard from './ProductCard'
 
 export default function Menu() {
   const ref = useReveal()
+  const navigate = useNavigate()
   const [active, setActive] = useState('all')
   const items = getProductsByCategory(active)
 
   return (
-    <section id="menu" className="section-pad scroll-mt-24 bg-cream" aria-labelledby="menu-heading">
+    <section className="section-pad bg-cream" aria-labelledby="menu-heading">
       <div ref={ref} className="reveal mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="The Menu"
@@ -51,7 +53,7 @@ export default function Menu() {
               key={product.id}
               product={product}
               compact
-              onOrder={() => scrollToId('order')}
+              onOrder={() => navigate('/order')}
             />
           ))}
         </div>

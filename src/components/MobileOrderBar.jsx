@@ -1,28 +1,28 @@
 import { useEffect, useState } from 'react'
-import { scrollToId } from '../hooks/useReveal'
+import { useLocation } from 'react-router-dom'
 import Button from './Button'
 
 export default function MobileOrderBar() {
   const [visible, setVisible] = useState(false)
+  const { pathname } = useLocation()
+  const onOrderPage = pathname === '/order'
 
   useEffect(() => {
+    if (onOrderPage) {
+      setVisible(false)
+      return undefined
+    }
+
     const onScroll = () => {
-      const hero = document.getElementById('home')
-      const order = document.getElementById('order')
-      if (!hero) return
-
-      const pastHero = window.scrollY > hero.offsetHeight * 0.45
-      const orderRect = order?.getBoundingClientRect()
-      const nearOrder =
-        orderRect && orderRect.top < window.innerHeight && orderRect.bottom > 80
-
-      setVisible(pastHero && !nearOrder)
+      setVisible(window.scrollY > 320)
     }
 
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [onOrderPage])
+
+  if (onOrderPage) return null
 
   return (
     <div
@@ -33,8 +33,8 @@ export default function MobileOrderBar() {
       aria-hidden={!visible}
     >
       <Button
+        to="/order"
         fullWidth
-        onClick={() => scrollToId('order')}
         className={!visible ? 'pointer-events-none' : ''}
         ariaLabel="Order now"
       >

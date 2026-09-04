@@ -47,7 +47,7 @@ export default function CustomOrderForm() {
   const labelClass = 'mb-1.5 block text-xs font-medium uppercase tracking-[0.12em] text-cocoa-soft'
 
   return (
-    <section id="order" className="section-pad scroll-mt-24 bg-ivory" aria-labelledby="order-heading">
+    <section className="section-pad bg-ivory" aria-labelledby="order-heading">
       <div ref={ref} className="reveal mx-auto max-w-7xl">
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <div className="min-w-0">

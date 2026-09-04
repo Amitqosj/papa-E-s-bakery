@@ -1,25 +1,20 @@
+import { Link } from 'react-router-dom'
 import { Mail } from 'lucide-react'
 import Instagram from './InstagramIcon'
 import { brand, navLinks } from '../data/content'
-import { scrollToId } from '../hooks/useReveal'
 
 export default function Footer() {
-  const handleNav = (e, href) => {
-    e.preventDefault()
-    scrollToId(href.replace('#', ''))
-  }
-
   return (
     <footer className="border-t border-cocoa/8 bg-cream px-4 pb-28 pt-14 min-[375px]:px-5 sm:px-8 sm:pb-20 sm:pt-16 lg:pb-16">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-10 sm:gap-12 md:grid-cols-[1.3fr_1fr_0.9fr]">
           <div className="min-w-0">
-            <div className="flex items-center gap-2.5">
+            <Link to="/" className="flex items-center gap-2.5">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-rose text-sm font-script text-cream">
                 Pe
               </span>
               <span className="font-display text-xl text-cocoa sm:text-2xl">Papa E&apos;s Bakery</span>
-            </div>
+            </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-cocoa-soft">{brand.tagline}</p>
             <p className="mt-3 text-sm text-cocoa-soft">{brand.location}</p>
             <a
@@ -34,16 +29,20 @@ export default function Footer() {
             <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-rose">Explore</p>
             <ul className="space-y-2.5">
               {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleNav(e, link.href)}
+                <li key={link.path}>
+                  <Link
+                    to={link.path}
                     className="text-sm text-cocoa-soft transition-colors hover:text-rose"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
+              <li>
+                <Link to="/order" className="text-sm text-cocoa-soft transition-colors hover:text-rose">
+                  Order Now
+                </Link>
+              </li>
             </ul>
           </nav>
 

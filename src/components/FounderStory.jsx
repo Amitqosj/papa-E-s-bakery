@@ -1,4 +1,4 @@
-import { useReveal, scrollToId } from '../hooks/useReveal'
+import { useReveal } from '../hooks/useReveal'
 import Button from './Button'
 
 const STORY_IMAGE =
@@ -8,11 +8,7 @@ export default function FounderStory() {
   const ref = useReveal()
 
   return (
-    <section
-      id="our-story"
-      className="section-pad scroll-mt-24 bg-ivory"
-      aria-labelledby="story-heading"
-    >
+    <section className="section-pad bg-ivory" aria-labelledby="story-heading">
       <div
         ref={ref}
         className="reveal mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-20"
@@ -49,7 +45,7 @@ export default function FounderStory() {
           </blockquote>
 
           <div className="mt-10">
-            <Button variant="secondary" onClick={() => scrollToId('contact')}>
+            <Button to="/contact" variant="secondary">
               Meet Papa E
             </Button>
           </div>

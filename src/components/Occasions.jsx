@@ -1,16 +1,14 @@
 import { occasions } from '../data/content'
-import { useReveal, scrollToId } from '../hooks/useReveal'
+import { useNavigate } from 'react-router-dom'
+import { useReveal } from '../hooks/useReveal'
 import SectionHeading from './SectionHeading'
 
 export default function Occasions() {
   const ref = useReveal()
+  const navigate = useNavigate()
 
   return (
-    <section
-      id="occasions"
-      className="section-pad scroll-mt-24 bg-cream"
-      aria-labelledby="occasions-heading"
-    >
+    <section className="section-pad bg-cream" aria-labelledby="occasions-heading">
       <div ref={ref} className="reveal mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Occasions"
@@ -24,7 +22,7 @@ export default function Occasions() {
             <button
               key={item.id}
               type="button"
-              onClick={() => scrollToId('order')}
+              onClick={() => navigate('/order')}
               className="group relative aspect-[3/4] overflow-hidden rounded-2xl text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose"
               aria-label={`Order for ${item.title}`}
             >

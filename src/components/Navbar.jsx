@@ -1,17 +1,15 @@
 import { useEffect, useId, useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import Instagram from './InstagramIcon'
 import { brand, navLinks } from '../data/content'
-import { scrollToId, useActiveSection } from '../hooks/useReveal'
 import Button from './Button'
-
-const SPY_IDS = ['home', 'menu', 'custom-cakes', 'our-story', 'reviews', 'contact', 'order']
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const activeId = useActiveSection(SPY_IDS)
   const menuId = useId()
+  const { pathname } = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -19,6 +17,10 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -35,35 +37,25 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
-  const handleNav = (e, href) => {
-    e.preventDefault()
-    setOpen(false)
-    // Brief delay so mobile overlay can close before scroll
-    const id = href.replace('#', '')
-    requestAnimationFrame(() => scrollToId(id))
-  }
-
-  const linkClass = (id) => {
-    const active = activeId === id || (id === 'contact' && activeId === 'order')
-    return `relative whitespace-nowrap text-[0.72rem] font-medium uppercase tracking-[0.14em] transition-colors duration-300 xl:text-[0.78rem] ${
-      active ? 'text-rose' : 'text-cocoa-soft hover:text-rose'
+  const linkClass = ({ isActive }) =>
+    `relative whitespace-nowrap text-[0.72rem] font-medium uppercase tracking-[0.14em] transition-colors duration-300 xl:text-[0.78rem] ${
+      isActive ? 'text-rose' : 'text-cocoa-soft hover:text-rose'
     }`
-  }
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
+        scrolled || pathname !== '/'
           ? 'border-b border-cocoa/10 bg-cream/90 py-2 shadow-soft backdrop-blur-md'
           : 'border-b border-transparent bg-transparent py-3.5 sm:py-4'
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 min-[375px]:px-5 sm:px-8">
-        <a
-          href="#home"
-          onClick={(e) => handleNav(e, '#home')}
+        <NavLink
+          to="/"
           className="group flex min-w-0 items-center gap-2.5"
           aria-label="Papa E's Bakery home"
+          end
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-rose text-sm font-script text-cream shadow-soft transition-transform duration-300 group-hover:scale-105 sm:h-10 sm:w-10">
             Pe
@@ -71,27 +63,28 @@ export default function Navbar() {
           <span className="truncate font-display text-lg tracking-wide text-cocoa sm:text-xl">
             Papa E&apos;s
           </span>
-        </a>
+        </NavLink>
 
         <nav className="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Primary">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => handleNav(e, link.href)}
-              className={linkClass(link.id)}
-              aria-current={activeId === link.id ? 'page' : undefined}
+            <NavLink
+              key={link.path}
+              to={link.path}
+              end={link.path === '/'}
+              className={linkClass}
             >
-              {link.label}
-              <span
-                className={`absolute -bottom-1 left-0 h-px bg-rose transition-all duration-300 ${
-                  activeId === link.id || (link.id === 'contact' && activeId === 'order')
-                    ? 'w-full'
-                    : 'w-0'
-                }`}
-                aria-hidden="true"
-              />
-            </a>
+              {({ isActive }) => (
+                <>
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-px bg-rose transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0'
+                    }`}
+                    aria-hidden="true"
+                  />
+                </>
+              )}
+            </NavLink>
           ))}
         </nav>
 
@@ -106,8 +99,8 @@ export default function Navbar() {
             <Instagram size={18} strokeWidth={1.75} />
           </a>
           <Button
+            to="/order"
             className="!hidden !rounded-xl !px-5 !py-2.5 !text-[0.7rem] !tracking-[0.12em] sm:!inline-flex"
-            onClick={() => scrollToId('order')}
             ariaLabel="Order now"
           >
             Order Now
@@ -125,7 +118,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu overlay */}
       <div
         id={menuId}
         className={`fixed inset-0 z-40 lg:hidden ${open ? 'pointer-events-auto' : 'pointer-events-none'}`}
@@ -158,27 +150,23 @@ export default function Navbar() {
           </div>
           <nav className="flex flex-1 flex-col overflow-y-auto px-5 py-4" aria-label="Mobile">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleNav(e, link.href)}
-                className={`border-b border-cocoa/8 py-4 font-display text-2xl transition-colors ${
-                  activeId === link.id ? 'text-rose' : 'text-cocoa'
-                }`}
+              <NavLink
+                key={link.path}
+                to={link.path}
+                end={link.path === '/'}
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  `border-b border-cocoa/8 py-4 font-display text-2xl transition-colors ${
+                    isActive ? 'text-rose' : 'text-cocoa'
+                  }`
+                }
               >
                 {link.label}
-              </a>
+              </NavLink>
             ))}
           </nav>
           <div className="space-y-3 border-t border-cocoa/8 px-5 py-6">
-            <Button
-              fullWidth
-              className="!rounded-xl"
-              onClick={() => {
-                setOpen(false)
-                requestAnimationFrame(() => scrollToId('order'))
-              }}
-            >
+            <Button to="/order" fullWidth className="!rounded-xl" onClick={() => setOpen(false)}>
               Order Now
             </Button>
             <a

@@ -1,5 +1,5 @@
 import { orderSteps } from '../data/content'
-import { useReveal, scrollToId } from '../hooks/useReveal'
+import { useReveal } from '../hooks/useReveal'
 import SectionHeading from './SectionHeading'
 import Button from './Button'
 
@@ -7,11 +7,7 @@ export default function OrderProcess() {
   const ref = useReveal()
 
   return (
-    <section
-      id="how-to-order"
-      className="section-pad scroll-mt-24 bg-cream"
-      aria-labelledby="process-heading"
-    >
+    <section className="section-pad bg-cream" aria-labelledby="process-heading">
       <div ref={ref} className="reveal mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Simple Steps"
@@ -37,7 +33,7 @@ export default function OrderProcess() {
         </p>
 
         <div className="mt-8 flex justify-center">
-          <Button className="w-full max-w-xs sm:w-auto" onClick={() => scrollToId('order')}>
+          <Button to="/order" className="w-full max-w-xs sm:w-auto">
             Start Your Order
           </Button>
         </div>
