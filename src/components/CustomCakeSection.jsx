@@ -10,7 +10,7 @@ const features = [
 ]
 
 const CUSTOM_IMAGE =
-  'https://images.unsplash.com/photo-1535254973040-607b474d7f5a?auto=format&fit=crop&w=1200&q=85'
+  'https://images.unsplash.com/photo-1542826438-bd32f43d626f?auto=format&fit=crop&w=1200&q=85'
 
 export default function CustomCakeSection() {
   const ref = useReveal()

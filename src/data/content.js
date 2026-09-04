@@ -86,7 +86,7 @@ export const occasions = [
     id: 'wedding',
     title: 'Wedding',
     image:
-      'https://images.unsplash.com/photo-1519657323259-f5df4c69fabe?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=900&q=80',
     alt: 'DEMO: Elegant wedding-style cake',
   },
   {
@@ -161,7 +161,7 @@ export const instagramGallery = [
   {
     id: 9,
     image:
-      'https://images.unsplash.com/photo-1535254973040-607b474d7f5a?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1542826438-bd32f43d626f?auto=format&fit=crop&w=800&q=80',
     alt: 'DEMO: Custom frosted cake details',
   },
 ]

@@ -57,7 +57,7 @@ export const products = [
     category: 'cakes',
     featured: true,
     image:
-      'https://images.unsplash.com/photo-1535254973040-607b474d7f5a?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1542826438-bd32f43d626f?auto=format&fit=crop&w=1000&q=80',
     alt: 'DEMO: Custom celebration cake',
   },
   {
@@ -79,7 +79,7 @@ export const products = [
     category: 'cupcakes',
     featured: false,
     image:
-      'https://images.unsplash.com/photo-1426869981800-95ebf51cefd4?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1000&q=80',
     alt: 'DEMO: Soft pink frosted vanilla cupcakes',
   },
   {
